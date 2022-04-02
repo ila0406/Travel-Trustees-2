@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Reviews, User } = require('../models');
+const { Reviews, User, Search } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -78,5 +78,40 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
+
+
+// route to go to a logged in user create review page
+router.get('/review', withAuth, async (req, res)=> {
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Reviews }],
+    });
+
+    const review = reviewData.get({ plain: true});
+
+    res.render('review', {
+      ...review,
+      logged_in: true
+    });
+
+} catch (err){
+  res.status(500).json(err);
+}
+
+});
+
+router.get('/search', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.render('search',{
+    })
+    return;
+  }
+
+  res.render('login');
+});
+
 
 module.exports = router;
