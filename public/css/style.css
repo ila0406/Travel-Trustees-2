@@ -24,7 +24,7 @@ header {
     height: 200px;
     width: 100%;
     margin-bottom: 25px;
-    background-image: url("../../assets/img/christine-roy-ir5MHI6rPg0-unsplash.jpg");
+    background-image: url("/assets/img/background.jpg");
     background-size: cover;
     background-position: center;
 } 
