@@ -1,0 +1,50 @@
+body {
+    background-color: black;
+    color: black;
+}
+
+header {
+    padding: 30px;
+    clear: both;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+#hero-image {
+    height: 200px;
+    width: 100%;
+    margin-bottom: 25px;
+    background-image: url("../img/christine-roy-ir5MHI6rPg0-unsplash.jpg");
+    background-size: cover;
+    background-position: center;
+} 
+
+form    {
+    text-align: center;
+}
+
+.hide {
+    display: none;
+  }
+
+#search-history {
+    text-align: center;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+footer {
+    padding: 30px;
+    clear: both;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+.forecastCard{
+    display: inline-block;
+    margin: 4%;
+}
+
