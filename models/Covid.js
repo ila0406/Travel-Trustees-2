@@ -16,27 +16,27 @@ Covid.init(
             allowNull: false,
         },
         population: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             AllowNull: false,
             default_value: 0,
         },
         cases_per_million: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             AllowNull: false,
             default_value: 0,
         },
         todays_cases: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             AllowNull: false,
             default_value: 0,
         },
         active_cases_per_million: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             AllowNull: false,
             default_value: 0,
         },
         total_recovered: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             AllowNull: false,
             default_value: 0,
         },
