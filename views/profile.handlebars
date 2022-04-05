@@ -33,11 +33,11 @@
     </form>
   </div>
 
-  {{#if projects.length}}
+  {{#if reviews.length}}
   <div class="col-md-6 project-list">
-    <h3>Current Projects:</h3>
+    <h3>Current Reviews:</h3>
 
-    {{#each projects as |project|}}
+    {{#each reviews as |project|}}
     <div class="row mb-2">
       <div class="col-md-8">
         <h4><a href="/project/{{project.id}}">{{project.name}}</a></h4>
