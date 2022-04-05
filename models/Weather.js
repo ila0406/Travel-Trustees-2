@@ -15,7 +15,10 @@ Weather.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        icon: {},
+        icon: {
+            type: DataTypes.DATETIME,
+            allowNull: false,
+        },
         date: {
             type: DataTypes.DATETIME,
             allowNull: false,
