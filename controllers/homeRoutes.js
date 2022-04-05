@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Reviews, User, Search } = require('../models');
+const { Reviews, User, Results } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/review/:id', async (req, res) => {
+router.get('/reviews/:id', async (req, res) => {
   try {
     const reviewData = await Reviews.findByPk(req.params.id, {
       include: [
@@ -40,7 +40,7 @@ router.get('/review/:id', async (req, res) => {
 
     const review = reviewData.get({ plain: true });
 
-    res.render('review', {
+    res.render('reviews', {
       ...review,
       logged_in: req.session.logged_in
     });
@@ -112,6 +112,18 @@ router.get('/search', (req, res) => {
 
   res.render('login');
 });
+
+router.get('/results', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.render('results',{
+    })
+    return;
+  }
+
+  res.render('login');
+});
+
 
 
 module.exports = router;
