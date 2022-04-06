@@ -1,12 +1,13 @@
 // Variables
 const apiKey = 'be36ed8a-9e45-4afb-b635-3bfc8ea68255';
-const searchButton = document.querySelector('#search-submit');
+const searchButton = document.getElementById('search-submit');
 const distance = 50;
 
 
-searchButton.addEventListener('click',searchSubmit());
 
-function searchSubmit(){
+searchButton.addEventListener('click',searchSubmit(event));
+
+function searchSubmit(event){
    nearbyAirports();
 }
 
@@ -32,12 +33,12 @@ function searchSubmit(){
             // searchBody.textContent = '';  // Clear previous list of airports
                 alert(data.response[0]['name'])
 
-                var airportName = data.response['name'];
+                var airportName = data.response[0]['name'];
                 // var bodyContentEl = document.createElement('li');
                 // $(bodyContentEl).text(airportName);
                 // searchBody.append(bodyContentEl);
-            searchCard.append(searchBody);
-            searchContentEl.append(searchCard);
+
+                
         })
 }
 
