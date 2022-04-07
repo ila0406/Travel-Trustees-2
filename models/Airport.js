@@ -11,11 +11,15 @@ Airport.init (
             primaryKey: true,
             autoIncrement: true,
         },
-        name: {
+        city: {
             type: DataTypes.STRING,
             AllowNull: false,
         },
-        code: {
+        Country: {
+            type: DataTypes.STRING,
+            AllowNull: false,
+        },
+        IATA_code: {
             type: DataTypes.STRING,
             AllowNull: false,
         },
@@ -31,7 +35,7 @@ Airport.init (
         sequelize,
         timestamps: false,
         freezeTableName: true,
-        modelName: 'resultAirports',
+        modelName: 'airports',
     },
 );
 

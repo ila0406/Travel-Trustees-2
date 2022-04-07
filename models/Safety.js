@@ -31,7 +31,7 @@ Safety.init(
         sequelize,
         timestamps: false,
         freezeTableName: true,
-        modelName: 'resultSafety',
+        modelName: 'safety',
     },
 );
 

@@ -48,7 +48,7 @@ Covid.init(
         sequelize,
         timestamps: false,
         freezeTableName: true,
-        modelName: 'resultCovid',
+        modelName: 'covid',
     },
 );
 

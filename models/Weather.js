@@ -43,7 +43,7 @@ Weather.init(
         sequelize,
         timestamps: false,
         freezeTableName: true,
-        modelName: 'resultWeather',
+        modelName: 'weather',
     },
 );
 

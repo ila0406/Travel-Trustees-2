@@ -17,7 +17,7 @@ Country.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        numeric: {
+        id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
