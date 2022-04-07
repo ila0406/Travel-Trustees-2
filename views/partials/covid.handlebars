@@ -1,10 +1,49 @@
  <!-- Covid Stats returned by API -->
-          <div class='search-results container mx-auto px-10 bg-gradient-to-r from-sky-500 to-teal-500'>
-            <blockquote class='p-main text-2xl font-semibold italic text-center text-slate-900'>
-              Showing results for  
-              <span class='before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-red-500 relative inline-block'>
-              <span class='relative text-white'>Covid Stats</span></span>
-              ....
-            </blockquote>
-            <div id='covid-content' class='box-content h-32 w-100 p-4 border-4'></div>
-          </div>
+    <div class='search-results container mx-auto px-10 bg-gradient-to-r from-sky-500 to-teal-500'>
+    <blockquote class='p-main text-2xl font-semibold italic text-center text-slate-900'>
+        Showing results for  
+        <span class='before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-red-500 relative inline-block'>
+        <span class='relative text-white'>Covid Stats</span></span>
+        ....
+    </blockquote>
+    <div id='covid-content' class='box-content h-32 w-100 p-4 border-4'></div>
+    <div>
+        <p>Population: </p>
+        <p>Cases Per Million People: </p>
+        <p>Todays Cases: </p>
+        <p>Active cases Per Million People: </p>
+        <p>Total recovered: </p>
+    </div>
+    </div>
+
+{{!-- 
+function travelInfo(data){
+    travelInfoEl.textContent= ''; // Clear previous advisory
+    var travelInfoURL = 'https://www.travel-advisory.info/api?countrycode=' + searchCountry;
+    var travelInfo = '';
+    travelCard.textContent = ''; // Clear previous travel card
+
+    fetch(travelInfoURL)
+        .then(function (res)   {
+            return res.json()
+        })
+    .then(function (data) {
+        // Output Travel Advisory based on Country drop down
+        if (searchCountry == 'US'){
+            travelInfo = data['data'].US.advisory.message;
+            var travelEl = document.createElement('p');
+            $(travelEl).text(`Country Safety Rating: ${travelInfo}`);
+            travelCard.append(travelEl);
+            travelInfoEl.append(travelCard);
+        }
+    });
+}
+
+// Clear Search History from Local Storage
+function clearHistory() {
+    window.localStorage.clear();
+    window.location.reload();
+}
+
+document.getElementById('clear').onclick = clearHistory; 
+--}}
