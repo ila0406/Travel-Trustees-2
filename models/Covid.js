@@ -11,10 +11,6 @@ Covid.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        searched_text: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         population: {
             type: DataTypes.INTEGER,
             AllowNull: false,

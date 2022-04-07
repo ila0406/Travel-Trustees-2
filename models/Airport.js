@@ -11,10 +11,6 @@ Airport.init (
             primaryKey: true,
             autoIncrement: true,
         },
-        searched_text: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         name: {
             type: DataTypes.STRING,
             AllowNull: false,

@@ -11,10 +11,6 @@ Safety.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        searched_text: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         safety_rating: {
             type: DataTypes.DECIMAL(3,2),
             AllowNull: false,

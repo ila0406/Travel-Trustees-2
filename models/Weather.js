@@ -11,10 +11,6 @@ Weather.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        searched_text: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         icon: {
             type: DataTypes.STRING,
             allowNull: false,
