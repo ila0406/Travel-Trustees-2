@@ -1,10 +1,9 @@
 // Variables
 const apiKey = 'be36ed8a-9e45-4afb-b635-3bfc8ea68255';
-const searchButton = document.getElementById('search-submit');
-
-
-
-searchButton.addEventListener('click',searchSubmit());
+document.getElementById("search-submit").addEventListener("click", function(event){
+    event.preventDefault();
+    searchSubmit();
+});
 
 
 
@@ -68,14 +67,14 @@ async function weatherSearch(){
 
 //Get Covid stats from Covid API endpoint
 async function covidSearch(data){
-    covidContentEl.innerHTML=''
     searchCountry = 'US'
-    var queryCovidURL = 'https://corona.lmao.ninja/v3/countries?yesterday=&sort=?&limit=1&countrycode='  + searchCountry;
+    var queryCovidURL = 'https://disease.sh/v3/covid-19/countries?yesterday=&sort=?&limit=1&countrycode='  + searchCountry;
 
     try {
         const response = await fetch(queryCovidURL)
         console.log(response);
         const covidData = await response.json();
+        console.log(covidData);
         parseCovidData(covidData);
 
     } catch(err){
@@ -87,62 +86,39 @@ async function covidSearch(data){
             return res.json()
         })
     function parseCovidData(covidData) {
-        searchBody.textContent = ''; // Clear previous list of stats
         // Output Travel Advisory based on Country drop down
-            population = data[212]['population'];
-            casePerMillion = data[212]['casesPerOneMillion'];
-            todayCases = data[212]['todayCases'];
-            activeMillion = data[212]['activePerOneMillion'];
-            recovered = data[212]['recovered'];
+            population = covidData[212]['population'];
+            casePerMillion = covidData[212]['casesPerOneMillion'];
+            todayCases = covidData[212]['todayCases'];
+            activeMillion = covidData[212]['activePerOneMillion'];
+            recovered = covidData[212]['recovered'];
 
-            // var populationEl = document.createElement('p');
-            // var casePerMillionEl = document.createElement('p');
-            // var todayCasesEl = document.createElement('p');
-            // var activeMillionEl = document.createElement('p');
-            // var recoveredEl = document.createElement('p');
-
-            // $(populationEl).text(`Population: ${population}`);
-            // $(casePerMillionEl).text(`Cases Per Million People: ${casePerMillion}`);
-            // $(todayCasesEl).text(`Todays Cases: ${todayCases}`);
-            // $(activeMillionEl).text(`Active cases Per Million People: ${activeMillion}`);
-            // $(recoveredEl).text(`Total recovered: ${recovered}`);
-
-            // covidCard.append(populationEl);
-            // covidCard.append(casePerMillionEl);
-            // covidCard.append(todayCasesEl);
-            // covidCard.append(activeMillionEl);
-            // covidCard.append(recoveredEl);
-            // covidContentEl.append(covidCard);
-            
-            // console.log(population);
+            console.log(`Population: ${population}, casePerMillion: ${casePerMillion},todayCases: ${todayCases},activeMillion: ${activeMillion},recovered: ${recovered}`)
     }
 }
 
 
 
         // Get Travel Safety Advisory from Advisory API Endpoint
-async function travelInfo(data){
-    travelInfoEl.textContent= ''; // Clear previous advisory
+async function travelInfo(){
     var travelInfoURL = 'https://www.travel-advisory.info/api?countrycode=' + searchCountry;
-    var travelInfo = '';
-    travelCard.textContent = ''; // Clear previous travel card
 
-    fetch(travelInfoURL)
-        .then(function (res)   {
-            return res.json()
-        })
-    .then(function (data) {
+    try {
+        const response = await fetch(travelInfoURL)
+        const travelData = await response.json();
+        console.log(travelData);
+        parseTravelData(travelData);
+
+    } catch (err) {
+
+    }
+
+
+    function parseTravelData(travelData) {
         // Output Travel Advisory based on Country drop down
-            travelInfo = data['data'].US.advisory.message;
-            var travelEl = document.createElement('p');
-            $(travelEl).text(`Country Safety Rating: ${travelInfo}`);
-            travelCard.append(travelEl);
-            travelInfoEl.append(travelCard);
-
-
+            travelInfo = travelData['data'].US.advisory.message;
             console.log(travelInfo);
-
-    });
+    }
 }
 
  function searchSubmit(){
@@ -152,9 +128,7 @@ async function travelInfo(data){
         weatherSearch();
         console.log('Getting Covid Stats')
         covidSearch();
-
-        // const weatherData = await weatherSearch();
-
+        console.log('Getting travel advisory')
+        travelInfo();
 }
-
 

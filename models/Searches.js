@@ -11,7 +11,14 @@ Searches.init(
             primaryKey: true,
             autoIncrement: true,
         },
-    }
+        
+    },
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        modelName: 'Searches',
+    },
 );
 
 module.exports = Searches;
