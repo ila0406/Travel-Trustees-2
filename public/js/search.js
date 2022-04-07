@@ -53,7 +53,7 @@ async function weatherSearch(){
             var forecastWind = weatherData['daily'][i].wind_speed;
             var forecastTemp =  weatherData['daily'][i].temp.max;
             var forecastHumidity = weatherData['daily'][i].humidity;
-            
+
             console.log(forecastTemp, forecastDay, forecastWind, forecastHumidity);
     }
 }
@@ -67,21 +67,26 @@ async function weatherSearch(){
 
 
 //Get Covid stats from Covid API endpoint
-async function displayCovid(data){
+async function covidSearch(data){
     covidContentEl.innerHTML=''
-    var queryCovidURL = 'https://corona.lmao.ninja/v2/countries?yesterday=&sort=?&limit=1&countrycode='  + searchCountry;
-    var population = '';
-    var casePerMillion = '';
-    var todayCases = '';
-    var activeMillion ='';
-    var recovered = '';
-    var covidCard = document.createElement('div')
+    searchCountry = 'US'
+    var queryCovidURL = 'https://corona.lmao.ninja/v3/countries?yesterday=&sort=?&limit=1&countrycode='  + searchCountry;
+
+    try {
+        const response = await fetch(queryCovidURL)
+        console.log(response);
+        const covidData = await response.json();
+        parseCovidData(covidData);
+
+    } catch(err){
+        console.log(err);
+    }
 
     fetch(queryCovidURL)
         .then(function (res)   {
             return res.json()
         })
-    .then(function (data) {
+    function parseCovidData(covidData) {
         searchBody.textContent = ''; // Clear previous list of stats
         // Output Travel Advisory based on Country drop down
             population = data[212]['population'];
@@ -90,27 +95,27 @@ async function displayCovid(data){
             activeMillion = data[212]['activePerOneMillion'];
             recovered = data[212]['recovered'];
 
-            var populationEl = document.createElement('p');
-            var casePerMillionEl = document.createElement('p');
-            var todayCasesEl = document.createElement('p');
-            var activeMillionEl = document.createElement('p');
-            var recoveredEl = document.createElement('p');
+            // var populationEl = document.createElement('p');
+            // var casePerMillionEl = document.createElement('p');
+            // var todayCasesEl = document.createElement('p');
+            // var activeMillionEl = document.createElement('p');
+            // var recoveredEl = document.createElement('p');
 
-            $(populationEl).text(`Population: ${population}`);
-            $(casePerMillionEl).text(`Cases Per Million People: ${casePerMillion}`);
-            $(todayCasesEl).text(`Todays Cases: ${todayCases}`);
-            $(activeMillionEl).text(`Active cases Per Million People: ${activeMillion}`);
-            $(recoveredEl).text(`Total recovered: ${recovered}`);
+            // $(populationEl).text(`Population: ${population}`);
+            // $(casePerMillionEl).text(`Cases Per Million People: ${casePerMillion}`);
+            // $(todayCasesEl).text(`Todays Cases: ${todayCases}`);
+            // $(activeMillionEl).text(`Active cases Per Million People: ${activeMillion}`);
+            // $(recoveredEl).text(`Total recovered: ${recovered}`);
 
-            covidCard.append(populationEl);
-            covidCard.append(casePerMillionEl);
-            covidCard.append(todayCasesEl);
-            covidCard.append(activeMillionEl);
-            covidCard.append(recoveredEl);
-            covidContentEl.append(covidCard);
+            // covidCard.append(populationEl);
+            // covidCard.append(casePerMillionEl);
+            // covidCard.append(todayCasesEl);
+            // covidCard.append(activeMillionEl);
+            // covidCard.append(recoveredEl);
+            // covidContentEl.append(covidCard);
             
-            console.log(population);
-    })
+            // console.log(population);
+    }
 }
 
 
@@ -145,6 +150,9 @@ async function travelInfo(data){
         airportSearch();
         console.log('Getting weather');
         weatherSearch();
+        console.log('Getting Covid Stats')
+        covidSearch();
+
         // const weatherData = await weatherSearch();
 
 }
