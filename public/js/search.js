@@ -1,103 +1,70 @@
 // Variables
 const apiKey = 'be36ed8a-9e45-4afb-b635-3bfc8ea68255';
 const searchButton = document.getElementById('search-submit');
-const distance = 50;
 
 
 
-searchButton.addEventListener('click',searchSubmit(event));
-
-function searchSubmit(event){
-   nearbyAirports();
-}
-
-
-
+searchButton.addEventListener('click',searchSubmit());
 
 
 
 // Get nearby Airports from API endpoint
- async function nearbyAirports(){
-    // lat = data[0].lat
-    const lat = 104;
-    const lon = 39;
-    // lon = data[0].lon
-    airportsUrl = 'https://airlabs.co/api/v9/airports?iata_code=CDG&api_key=be36ed8a-9e45-4afb-b635-3bfc8ea68255'
+  async function airportSearch(){
+    iataCode = 'CDG'
+    airportsUrl = 'https://airlabs.co/api/v9/airports?iata_code=' + iataCode + '&api_key=' + apiKey
+    try {
+    const response = await fetch(airportsUrl)
+    console.log(response);
+    const airportData = await response.json();
+    const airportName  = airportData.response[0]['name'];
+    console.log(airportName);
+    return(airportName);
+        // return airportData;  
 
-    fetch(airportsUrl)
-        .then(response => {
-            if(response.ok)
-            return response.json();
-        })
-        .then(data =>{
-            // searchBody.textContent = '';  // Clear previous list of airports
-                alert(data.response[0]['name'])
-
-                var airportName = data.response[0]['name'];
-                // var bodyContentEl = document.createElement('li');
-                // $(bodyContentEl).text(airportName);
-                // searchBody.append(bodyContentEl);
-
-                
-        })
+    } catch (err){
+        console.log(err);
+    }  
 }
 
 
-function weatherSearch(){
-    // var lat = data[0].lat;
-    // var lon = data[0].lon;
-    const lat = 104;
-    const lon = 39;
+
+async function weatherSearch(){
+    const lat = 39;
+    const lon = 104;
+    var geocodeApiKey = 'a19e123a3b1cf7f00d08b299db07954c';
     var weatherApiUrl = 'https://api.openweathermap.org/data/2.5/onecall?' + 'lat=' + lat + '&lon=' + lon + '&units=imperial' + '&appid=' + geocodeApiKey;
 
-    fetch(weatherApiUrl)
-        .then(response =>{
-            if(response.ok){
-                return response.json()
-            }
-        })
-        .then(data =>{
-            forecast(data)
-        })
-}
+    try {
+        const response = await fetch(weatherApiUrl)
+        console.log(response);
+        const weatherData = await response.json();
+        forecast(weatherData);
 
-// Get 5-day Weather forecast from data returned in Weather Search Function
- async function forecast(data){
-    forecastBody.empty();
 
-    for (i=0; i<5; i++){
-        var forecastWicon = data['daily'][i]['weather'][0].icon;
-        var forecastIconUrl = 'https://openweathermap.org/img/wn/' + forecastWicon + '.png';
-        var forecastDay = data['daily'][i].dt;
-        var forecastWind = data['daily'][i].wind_speed;
-        var forecastTemp =  data['daily'][i].temp.max;
-        var forecastHumidity = data['daily'][i].humidity;
 
-        var forecastCard = document.createElement('div');
-        var forecastWiconEl = document.createElement('img');
-        var momentDay = moment(forecastDay * 1000).format('MM/DD/YYYY');
-        var forecastTempEl = document.createElement('p');
-        var forecastWindEl = document.createElement('p');
-        var forecastHumidityEl = document.createElement('p');
 
-        $(forecastWiconEl).attr('id', 'wicon');
-        $(forecastWiconEl).attr('src', forecastIconUrl);
-        $(forecastWiconEl).attr('alt', 'weather icon');
-        $(forecastTempEl).text(`Temp ${forecastTemp} F`);
-        $(forecastWindEl).text(`Wind: ${forecastWind} MPH`);
-        $(forecastHumidityEl).text(`Humidity ${forecastHumidity} %`);
+        // Get 5-day Weather forecast from data returned in Weather Search Function
+        function forecast(weatherData){
 
-        forecastCard.classList.add('forecastCard');
-        forecastCard.append(forecastWiconEl);
-        forecastCard.append(momentDay);
-        forecastCard.append(forecastTempEl);
-        forecastCard.append(forecastWindEl);
-        forecastCard.append(forecastHumidityEl);
-        forecastBody.append(forecastCard);
-
-        console.log(forecastTemp);
+        for (i=0; i<5; i++){
+            var forecastWicon = weatherData['daily'][i]['weather'][0].icon;
+            var forecastIconUrl = 'https://openweathermap.org/img/wn/' + forecastWicon + '.png';
+            var forecastDay = weatherData['daily'][i].dt;
+            var forecastWind = weatherData['daily'][i].wind_speed;
+            var forecastTemp =  weatherData['daily'][i].temp.max;
+            var forecastHumidity = weatherData['daily'][i].humidity;
+            
+            console.log(forecastTemp, forecastDay, forecastWind, forecastHumidity);
     }
 }
+
+    } catch (err){
+        console.log(err);
+    }
+
+}
+
+
 
 //Get Covid stats from Covid API endpoint
 async function displayCovid(data){
@@ -172,4 +139,14 @@ async function travelInfo(data){
 
     });
 }
+
+ function searchSubmit(){
+        console.log('Getting airports');
+        airportSearch();
+        console.log('Getting weather');
+        weatherSearch();
+        // const weatherData = await weatherSearch();
+
+}
+
 
