@@ -11,6 +11,7 @@ Searches.init(
             primaryKey: true,
             autoIncrement: true,
         },
+      
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -59,6 +60,7 @@ Searches.init(
                 key: 'id',
             },
         },
+
     },
     {
         sequelize,
@@ -67,6 +69,7 @@ Searches.init(
         underscored: true,
         modelName: 'searches',
     }
+
 );
 
 module.exports = Searches;
