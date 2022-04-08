@@ -1,0 +1,11 @@
+[
+    {
+        "created_date": "2015-01-01",
+        "user_id": 4,
+        "airport_id": 1,
+        "country_id": 16,
+        "covid_id": 1,
+        "safety_id": 1,
+        "weather_id": 1
+    }
+]

@@ -16,15 +16,15 @@ Weather.init(
             allowNull: false,
         },
         date: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             allowNull: false,
         },
         temp: {
-            type: DataTypes.DECIMAL(3,2),
+            type: DataTypes.DECIMAL(5,2),
             AllowNull: false,
         },
         wind_speed: {
-            type: DataTypes.DECIMAL(3,2),
+            type: DataTypes.DECIMAL(5,2),
             AllowNull: false,
         },
         humidity: {
