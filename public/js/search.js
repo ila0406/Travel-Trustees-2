@@ -1,5 +1,5 @@
 // Variables
-const apiKey = 'be36ed8a-9e45-4afb-b635-3bfc8ea68255';
+const airportApiKey = 'be36ed8a-9e45-4afb-b635-3bfc8ea68255';
 document.getElementById("search-submit").addEventListener("click", function(event){
     event.preventDefault();
     searchSubmit();
