@@ -7,7 +7,7 @@ document.getElementById("search-submit").addEventListener("click", function(even
 const selectedCountry = document.getElementById('options');
 const selectedCity = document.getElementById('search');
 
-const localUrl = `http://localhost:3001`
+const localUrl = `https://immense-ravine-97579.herokuapp.com/`
 
 
 // Renders Country Names for dropdown menu

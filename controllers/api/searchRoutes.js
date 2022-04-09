@@ -1,4 +1,3 @@
-
 const router = require('express').Router();
 const { Airport, Country, Covid, Safety, Weather, Searches } = require('../../models');
 const withAuth = require('../../utils/auth');
