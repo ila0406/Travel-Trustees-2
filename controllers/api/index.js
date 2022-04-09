@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const userRoutes = require('./userRoutes');
 const reviewsRoutes = require('./reviewsRoutes');
-const resultsRoutes = require('./resultsRoutes')
+const resultsRoutes = require('./searchRoutes')
 
 
 // Full Route /api/...
