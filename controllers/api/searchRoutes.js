@@ -2,6 +2,8 @@
 const router = require('express').Router();
 const { Airport, Country, Covid, Safety, Weather, Searches } = require('../../models');
 const withAuth = require('../../utils/auth');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 router.get('/country',async (req,res)=>{
   try {
@@ -9,6 +11,28 @@ router.get('/country',async (req,res)=>{
       res.status(200).json(airportData);
   } catch (err) {res.status(500).json(err)}
 });
+
+router.get('/iata/:Country/:city',async (req,res)=>{
+    try {
+        const iataData = await Airport.findAll({
+            where: { 
+                Country: req.params.Country,
+                city: {
+                    [Op.like]: '%' + req.params.city + '%'
+                }
+            }
+
+});
+console.log(iataData);
+if (!iataData) {
+    res.status(404).json({ message: 'No matching airports found' });
+    return;
+  }
+
+  res.status(200).json(iataData);
+
+    } catch (err) {res.status(500).json(err)}
+})
 
 router.get('/', withAuth, async (req,res)=>{
   try {
