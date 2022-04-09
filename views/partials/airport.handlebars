@@ -1,13 +1,44 @@
 <!-- Nearby Airports returned by API -->
-          <div class='search-results container mx-auto px-10 bg-gradient-to-r from-sky-500 to-teal-500'>
-            <blockquote class='p-main text-2xl font-semibold italic text-center text-slate-900'>
-              Showing results for  
-              <span class='before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-red-500 relative inline-block'>
-              <span class='relative text-white'>Nearby Airports</span></span>
-              ....
-            </blockquote>
-            <div id='search-content' class='box-content h-32 w-100 p-4 border-4'>
-            </div>
-          </div>
+<div class='search-results container mx-auto px-10 bg-gradient-to-r from-sky-500 to-teal-500'>
+    <blockquote class='p-main text-2xl font-semibold italic text-center text-slate-900'>
+        Showing results for  
+        <span class='before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-red-500 relative inline-block'>
+        <span class='relative text-white'>Nearby Airports</span></span>
+        ....
+    </blockquote>
+    
+    <div id='search-content' class='box-content h-42 w-100 p-4 border-4'>
+        <table class="tg">
+        <thead>
+        <tr>
+            <th class="city">City</th>
+            <th class="IATA_code">Aiport Code</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="city">Aspen, (CO) - Aspen-Pitkin County Airport</td>
+                <td class="IATA_code">ASE</td>
+            </tr>
+            <tr>
+                <td class="city">Colorado Springs (CO)</td>
+                <td class="IATA_code">COS</td>
+            </tr>
+            <tr>
+                <td class="city">Denver (CO) - Denver International Airport</td>
+                <td class="IATA_code">DEN</td>
+            </tr>
+            <tr>
+                <td class="city">Durango (CO)"</td>
+                <td class="IATA_code">DRO</td>
+            </tr>
+            <tr>
+                <td class="city">Grand Junction (CO)</td>
+                <td class="IATA_code">GJT</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>
 
 <script src="../../public/js/search.js"></script>
