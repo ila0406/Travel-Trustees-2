@@ -7,8 +7,7 @@ document.getElementById("search-submit").addEventListener("click", function(even
 const selectedCountry = document.getElementById('options');
 const selectedCity = document.getElementById('search');
 
-const localUrl = `https://immense-ravine-97579.herokuapp.com/`
-
+const localUrl = `http://localhost:3001`
 
 // Renders Country Names for dropdown menu
 async function renderAirportData() {
