@@ -28,7 +28,8 @@ This App was built with the intention of being a safety tool for your travel nee
 * bcrypt 
 * connect-session-sequelize 
 * country-state-city 
-* dotenv * express 
+* dotenv 
+* express 
 * express-handlebars 
 * express-session 
 * mysql2 
