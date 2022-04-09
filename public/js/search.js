@@ -7,12 +7,12 @@ document.getElementById("search-submit").addEventListener("click", function(even
 const selectedCountry = document.getElementById('options');
 const selectedCity = document.getElementById('search')
 
-const localUrl = `http://localhost:3001`
+const inUseURL = location.origin;
 
 // Renders Country Names for dropdown menu
 async function renderAirportData() {
     try {
-        const response = await fetch(localUrl + '/api/search/country');
+        const response = await fetch(inUseURL + '/api/search/country');
         const airportData = await response.json();
         console.log(airportData);
 
