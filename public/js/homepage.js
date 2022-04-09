@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3001;
 
 const searchUrl = `https://localhost:3001/profile`;
 
+const LiveURL = location.origin + '/profile';
+
 function search () {
 }
-
