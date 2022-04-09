@@ -4,8 +4,36 @@ document.getElementById("search-submit").addEventListener("click", function(even
     event.preventDefault();
     searchSubmit();
 });
+// const express = require('express')
+
+// const app = express();
+// const PORT = process.env.PORT || 3001;
+
+const localUrl = `http://localhost:3001`
 
 
+// Get's IATA codes for dropdown menu
+async function renderAirportData() {
+    try {
+        const response = await fetch(localUrl + '/api/search');
+        const airportData = await response.text();
+        console.log(airportData);
+        const iataCode = airportData;
+        const dropDown = document.getElementById('options');
+
+        while(i<airportData.length){
+            const listEl = document.createElement('option');
+            listEl.setAttribute('value=',iataCode[i]);
+            listEl.textContent = iataCode[i];
+            dropDown.append(listEl);
+        }
+    } catch (err) {
+        console.log(err);
+    }
+
+
+
+}
 
 // Get nearby Airports from API endpoint
   async function airportSearch(){
@@ -120,6 +148,8 @@ async function travelInfo(){
             console.log(travelInfo);
     }
 }
+
+renderAirportData();
 
  function searchSubmit(){
         console.log('Getting airports');

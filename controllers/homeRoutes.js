@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Reviews, User, Results } = require('../models');
+const { Reviews, User, Results, Airport } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -112,6 +112,9 @@ router.get('/search', (req, res) => {
 
   res.render('login');
 });
+
+
+
 
 router.get('/results', (req, res) => {
   // If the user is already logged in, redirect the request to another route
