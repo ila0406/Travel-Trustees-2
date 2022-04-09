@@ -5,7 +5,7 @@ document.getElementById("search-submit").addEventListener("click", function(even
     searchSubmit();
 });
 const selectedCountry = document.getElementById('options');
-const selectedCity = document.getElementById('search');
+const selectedCity = document.getElementById('search')
 
 const localUrl = `http://localhost:3001`
 
@@ -32,6 +32,17 @@ async function renderAirportData() {
 
 
 
+}
+
+// Gets the neccessary IATA code for airport API requests
+async function getIataCode(){
+    try {
+        const response= await fetch(localUrl + `/api/search/iata/${selectedCountry.value}?${selectedCity.value}`);
+        const iataCode = await response.json();
+        console.log(iataCode)
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 // Get nearby Airports from API endpoint
@@ -150,9 +161,11 @@ async function travelInfo(){
 
 renderAirportData();
 
+
  function searchSubmit(){
      alert(selectedCountry.value);
      alert(selectedCity.value);
+     getIataCode();
         console.log('Getting airports');
         airportSearch();
         console.log('Getting weather');
