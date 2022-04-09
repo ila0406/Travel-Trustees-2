@@ -4,18 +4,16 @@ document.getElementById("search-submit").addEventListener("click", function(even
     event.preventDefault();
     searchSubmit();
 });
-// const express = require('express')
-
-// const app = express();
-// const PORT = process.env.PORT || 3001;
+const selectedCountry = document.getElementById('options');
+const selectedCity = document.getElementById('search');
 
 const localUrl = `http://localhost:3001`
 
 
-// Get's IATA codes for dropdown menu
+// Renders Country Names for dropdown menu
 async function renderAirportData() {
     try {
-        const response = await fetch(localUrl + '/api/search');
+        const response = await fetch(localUrl + '/api/search/country');
         const airportData = await response.json();
         console.log(airportData);
 
@@ -154,6 +152,8 @@ async function travelInfo(){
 renderAirportData();
 
  function searchSubmit(){
+     alert(selectedCountry.value);
+     alert(selectedCity.value);
         console.log('Getting airports');
         airportSearch();
         console.log('Getting weather');

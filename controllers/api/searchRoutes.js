@@ -1,9 +1,16 @@
-const {Airport, Country} = require('../../models/')
+
 const router = require('express').Router();
 const { Airport, Country, Covid, Safety, Weather, Searches } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.get('/search', withAuth, async (req,res)=>{
+router.get('/country',async (req,res)=>{
+  try {
+      const airportData = await Country.findAll()
+      res.status(200).json(airportData);
+  } catch (err) {res.status(500).json(err)}
+});
+
+router.get('/', withAuth, async (req,res)=>{
   try {
       const airportData = await Airport.findAll()
       const countryData = await Country.findAll()
