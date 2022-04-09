@@ -16,16 +16,18 @@ const localUrl = `http://localhost:3001`
 async function renderAirportData() {
     try {
         const response = await fetch(localUrl + '/api/search');
-        const airportData = await response.text();
+        const airportData = await response.json();
         console.log(airportData);
-        const iataCode = airportData;
-        const dropDown = document.getElementById('options');
 
+        const dropDown = document.getElementById('options');
+        let i = 0;
         while(i<airportData.length){
+            const country = airportData[i]['country'];
             const listEl = document.createElement('option');
-            listEl.setAttribute('value=',iataCode[i]);
-            listEl.textContent = iataCode[i];
+            listEl.setAttribute('value',country);
+            listEl.textContent = country
             dropDown.append(listEl);
+            i ++;
         }
     } catch (err) {
         console.log(err);

@@ -1,7 +1,7 @@
+const {Airport, Country} = require('../../models/')
 const router = require('express').Router();
 const { Airport, Country, Covid, Safety, Weather, Searches } = require('../../models');
 const withAuth = require('../../utils/auth');
-
 
 router.get('/search', withAuth, async (req,res)=>{
   try {
@@ -78,6 +78,7 @@ router.delete('/search/:id', withAuth, async (req, res)=>{
     }
 
     res.status(200).json(searchData);
+
   } catch (err) {res.status(500).json(err)}
 });
 

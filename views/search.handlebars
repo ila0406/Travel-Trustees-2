@@ -2,7 +2,10 @@
          
          <div>
           <form id='search-form' class='box-content h-40 w-100 p-4 border-4'>
-            <select id='options'>
+            <select id='options' name = "airports">
+              {{!-- {{#each airports}}
+              <option value="{{Country}}">{{Country}}</option>
+              {{!--/each}} --}}
             </select>
             <input id='search' class='form-input' type='text' placeholder='City Name!'>
             <button type = 'button' id ='search-submit' class='btn btn-main bg-red-500 hover:bg-sky-700'>Search</button>

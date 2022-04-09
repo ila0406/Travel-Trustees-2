@@ -102,11 +102,14 @@ router.get('/review', withAuth, async (req, res)=> {
 
 });
 
-router.get('/search', (req, res) => {
+router.get('/search', async (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.render('search',{
-    })
+    const airportData = await Airport.findAll()
+    const airports = airportData.map((data)=>data.get({plain: true}))
+    console.log("airports");
+    console.log(airports);
+    res.render('search',{airports})
     return;
   }
 
