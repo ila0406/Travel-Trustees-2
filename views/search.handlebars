@@ -6,9 +6,12 @@
         <button type = 'button' id ='search-submit' class='btn btn-main bg-red-500 hover:bg-sky-700'>Search</button>
     </form>
 </div>
-
-    <br>
-    {{> results}}
+    {{!-- {{#if searchClicked}} --}}
+        <br>
+        {{> results}}
+    {{!-- {{else}} --}}
+    
+    {{!-- {{/if}} --}}
 
 <script src="./js/search.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
