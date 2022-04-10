@@ -8,6 +8,10 @@ const selectedCountry = document.getElementById('options');
 const selectedCity = document.getElementById('search')
 
 const inUseURL = location.origin;
+const resultsContainerEl = document.getElementById('results-container');
+console.log(resultsContainerEl);
+// resultsContainerEl.setAttribute('class', 'hide');
+
 
 // Renders Country Names for dropdown menu
 async function renderAirportData() {
@@ -29,9 +33,7 @@ async function renderAirportData() {
     } catch (err) {
         console.log(err);
     }
-
-
-
+    
 }
 
 // Gets the neccessary IATA code for airport API requests
@@ -154,8 +156,8 @@ async function travelInfo(){
 
     function parseTravelData(travelData) {
         // Output Travel Advisory based on Country drop down
-            travelInfo = travelData['data'].US.advisory.message;
-            console.log(travelInfo);
+        travelInfo = travelData['data'].US.advisory.message;
+        console.log(travelInfo);
     }
 }
 
@@ -163,16 +165,16 @@ renderAirportData();
 
 
  function searchSubmit(){
-     alert(selectedCountry.value);
-     alert(selectedCity.value);
-     getIataCode();
-        console.log('Getting airports');
-        airportSearch();
-        console.log('Getting weather');
-        weatherSearch();
-        console.log('Getting Covid Stats')
-        covidSearch();
-        console.log('Getting travel advisory')
-        travelInfo();
+    alert(selectedCountry.value);
+    alert(selectedCity.value);
+    getIataCode();
+    console.log('Getting airports');
+    airportSearch();
+    console.log('Getting weather');
+    weatherSearch();
+    console.log('Getting Covid Stats')
+    covidSearch();
+    console.log('Getting travel advisory')
+    travelInfo();
 }
 
