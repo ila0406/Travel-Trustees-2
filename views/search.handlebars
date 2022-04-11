@@ -3,15 +3,14 @@
         <select id='options'>
         </select>
         <input id='search' class='form-input' type='text' placeholder='City Name!'>
-        <button type = 'button' id ='search-submit' class='btn btn-main bg-red-500 hover:bg-sky-700'>Search</button>
+        <button type='button' id='search-submit' class='btn btn-main bg-red-500 hover:bg-sky-700'>Search</button>
     </form>
 </div>
-    {{!-- {{#if searchClicked}} --}}
-        <br>
-        {{> results}}
-    {{!-- {{else}} --}}
-    
-    {{!-- {{/if}} --}}
+
+<br>
+<div id='results-container' class="hide">
+    {{> results}}
+</div>
 
 <script src="./js/search.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>

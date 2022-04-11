@@ -1,16 +1,20 @@
 // Variables
 const airportApiKey = 'be36ed8a-9e45-4afb-b635-3bfc8ea68255';
+const resultsContainerEl = document.getElementById('results-container');
+console.log(resultsContainerEl);
+// resultsContainerEl.setAttribute('class', 'hide');
+
 document.getElementById("search-submit").addEventListener("click", function(event){
     event.preventDefault();
+    resultsContainerEl.removeAttribute('class');
     searchSubmit();
 });
 const selectedCountry = document.getElementById('options');
 const selectedCity = document.getElementById('search')
 
 const inUseURL = location.origin;
-const resultsContainerEl = document.getElementById('results-container');
-console.log(resultsContainerEl);
-// resultsContainerEl.setAttribute('class', 'hide');
+console.log(inUseURL);
+
 
 
 // Renders Country Names for dropdown menu
@@ -33,13 +37,15 @@ async function renderAirportData() {
     } catch (err) {
         console.log(err);
     }
-    
+
 }
 
 // Gets the neccessary IATA code for airport API requests
 async function getIataCode(){
+    console.log(selectedCity.value)
     try {
-        const response= await fetch(localUrl + `/api/search/iata/${selectedCountry.value}?${selectedCity.value}`);
+        const response= await fetch(inUseURL + `/api/search/iata/${selectedCountry.value}/${selectedCity.value}`);
+        console.log("YOU HGIT LINE 47!!!!!!!!!!!!!!!!!!")
         const iataCode = await response.json();
         console.log(iataCode)
     } catch (err) {
@@ -50,7 +56,7 @@ async function getIataCode(){
 // Get nearby Airports from API endpoint
   async function airportSearch(){
     iataCode = 'CDG'
-    airportsUrl = 'https://airlabs.co/api/v9/airports?iata_code=' + iataCode + '&api_key=' + apiKey
+    airportsUrl = 'https://airlabs.co/api/v9/airports?iata_code=' + iataCode + '&api_key=' + airportApiKey
     try {
     const response = await fetch(airportsUrl)
     console.log(response);
@@ -72,7 +78,7 @@ async function weatherSearch(){
     const lon = 104;
     var geocodeApiKey = 'a19e123a3b1cf7f00d08b299db07954c';
     var weatherApiUrl = 'https://api.openweathermap.org/data/2.5/onecall?' + 'lat=' + lat + '&lon=' + lon + '&units=imperial' + '&appid=' + geocodeApiKey;
-
+    console.log("YOU HGIT LINE 81!!!!!!!!!!!!!!!!!!")
     try {
         const response = await fetch(weatherApiUrl)
         console.log(response);
@@ -120,7 +126,7 @@ async function covidSearch(data){
     } catch(err){
         console.log(err);
     }
-
+    console.log("YOU HGIT LINE 129!!!!!!!!!!!!!!!!!!")
     fetch(queryCovidURL)
         .then(function (res)   {
             return res.json()
@@ -142,7 +148,7 @@ async function covidSearch(data){
         // Get Travel Safety Advisory from Advisory API Endpoint
 async function travelInfo(){
     var travelInfoURL = 'https://www.travel-advisory.info/api?countrycode=' + searchCountry;
-
+    console.log("YOU HGIT LINE 151!!!!!!!!!!!!!!!!!!")
     try {
         const response = await fetch(travelInfoURL)
         const travelData = await response.json();
