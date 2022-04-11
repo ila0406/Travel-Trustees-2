@@ -22,6 +22,7 @@ This App was built with the intention of being a safety tool for your travel nee
 * Covid cases
 * Local weather 
 * Country Safety Rating for Travel 
+
 Previous searches are saved within the user's profile which is behind a login. Safety information for users home location is also saved in profile so they have a comparision when planning their travels. 
 
 ## <a id='technolgies-used' href='#readme-badges'><img id='usage' src='https://i.imgur.com/ykBU02c.png' style='height: 40px'></a>
