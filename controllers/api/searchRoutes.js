@@ -4,112 +4,118 @@ const withAuth = require('../../utils/auth');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
-router.get('/country',async (req,res)=>{
-  try {
-      const airportData = await Country.findAll()
-      res.status(200).json(airportData);
-  } catch (err) {res.status(500).json(err)}
+router.get('/country', async (req, res) => {
+    try {
+        const airportData = await Country.findAll()
+        res.status(200).json(airportData);
+    } catch (err) { res.status(500).json(err) }
 });
 
-router.get('/iata/:Country/:city',async (req,res)=>{
+router.get('/iata/:Country/:city', async (req, res) => {
+    console.log("YOU GOT ME COPPER")
     try {
         const iataData = await Airport.findAll({
-            where: { 
+            where: {
                 Country: req.params.Country,
                 city: {
-                    [Op.like]: '%' + req.params.city + '%'
+                    // [Op.like]: '%' + req.params.city + '%'
+                    [Op.like]: req.params.city
                 }
             }
+        });
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! iata data: " + iataData);
+        if (!iataData) {
+            res.status(404).json({ message: 'No matching airports found' });
+            return;
+        }
 
-});
-console.log(iataData);
-if (!iataData) {
-    res.status(404).json({ message: 'No matching airports found' });
-    return;
-  }
+        res.json(iataData);
 
-  res.status(200).json(iataData);
-
-    } catch (err) {res.status(500).json(err)}
+    } catch (err) { res.status(500).json(err) }
 })
 
-router.get('/', withAuth, async (req,res)=>{
-  try {
-      const airportData = await Airport.findAll()
-      const countryData = await Country.findAll()
-      const covidData = await Covid.findAll()
-      const safetyData = await Safety.findAll()
-      const weatherData = await Weather.findAll()
-      const allData = [airportData && countryData && covidData && safetyData && weatherData]
+router.get('/', withAuth, async (req, res) => {
+    try {
+        const airportData = await Airport.findAll()
+        const countryData = await Country.findAll()
+        const covidData = await Covid.findAll()
+        const safetyData = await Safety.findAll()
+        const weatherData = await Weather.findAll()
+        const allData = [airportData && countryData && covidData && safetyData && weatherData]
 
-      res.status(200).json(allData);
-  } catch (err) {res.status(500).json(err)}
+        res.status(200).json(allData);
+    } catch (err) { res.status(500).json(err) }
 });
 
-router.post('/search', withAuth, async (req, res)=>{
-  try {
-    const newAirportData = await Airport.Create({
-      ...req.body
-    })
-    const newCountryData = await Country.Create({
-      ...req.body
-    })
-    const newCovidData = await Covid.Create({
-      ...req.body
-    })
-    const newSafetyData = await Safety.Create({
-      ...req.body
-    })
-    const newWeatherData = await Weather.Create({
-      ...req.body
-    })
-    const allNewData = [newAirportData && newCountryData && newCovidData && newSafetyData && newWeatherData]
+router.post('/search', withAuth, async (req, res) => {
 
-    res.status(200).json(allNewData);
-  } catch (err) {res.status(500).json(err)}
+    console.log("HIT ME BABY ONE MORE TIME!!!!")
+
+    try {
+        const newAirportData = await Airport.Create({
+            ...req.body
+        })
+        const newCountryData = await Country.Create({
+            ...req.body
+        })
+        const newCovidData = await Covid.Create({
+            ...req.body
+        })
+        const newSafetyData = await Safety.Create({
+            ...req.body
+        })
+        const newWeatherData = await Weather.Create({
+            ...req.body
+        })
+        const allNewData = [newAirportData && newCountryData && newCovidData && newSafetyData && newWeatherData]
+
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + allNewData);
+
+        res.status(200).json(allNewData);
+    } catch (err) { res.status(500).json(err) }
 });
 
-router.get('/search/:id', withAuth, async (req, res)=>{
-  try {
+router.get('/search/:id', withAuth, async (req, res) => {
+    try {
         const searchData = await Searches.findByPk({
-      where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
-      },
-    });
+            where: {
+                id: req.params.id,
+                user_id: req.session.user_id,
+            },
+        });
 
-    if (!searchData) {
-      res.status(404).json({ message: 'No Previous Searches found with this id!' });
-      return;
-    }
+        if (!searchData) {
+            res.status(404).json({ message: 'No Previous Searches found with this id!' });
+            return;
+        }
 
-    res.status(200).json(searchData);
-  } catch (err) {res.status(500).json(err)}
+        res.status(200).json(searchData);
+    } catch (err) { res.status(500).json(err) }
 });
 
-router.put('/search/:id', withAuth, async (req, res)=>{
-  try {
-    
-  } catch (err) {res.status(500).json(err)}
+router.put('/search/:id', withAuth, async (req, res) => {
+    try {
+
+    } catch (err) { res.status(500).json(err) }
 });
 
-router.delete('/search/:id', withAuth, async (req, res)=>{
-  try {
-    const searchData = await Searches.destroy({
-      where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
-      },
-    });
+router.delete('/search/:id', withAuth, async (req, res) => {
+    try {
+        const searchData = await Searches.destroy({
+            where: {
+                id: req.params.id,
+                user_id: req.session.user_id,
+            },
+        });
 
-    if (!searchData) {
-      res.status(404).json({ message: 'No Previous Searches found with this id!' });
-      return;
-    }
+        if (!searchData) {
+            res.status(404).json({ message: 'No Previous Searches found with this id!' });
+            return;
+        }
 
-    res.status(200).json(searchData);
+        res.status(200).json(searchData);
 
-  } catch (err) {res.status(500).json(err)}
+    } catch (err) { res.status(500).json(err) }
 });
 
 module.exports = router;
