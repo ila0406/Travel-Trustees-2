@@ -31,7 +31,23 @@ router.get('/iata/:Country/:city', async (req, res) => {
         res.json(iataData);
 
     } catch (err) { res.status(500).json(err) }
-})
+});
+
+router.get('/countryCode/:Country', async (req,res)=>{
+    try {
+        console.log('getting country code')
+        const countryCode = await Country.findAll({where: {Country: req.params.Country}})
+
+
+
+        if (!countryCode){
+            res.status(404).json({message: 'No matching country found'});
+            return;
+        }
+
+        res.json(countryCode)
+    } catch (err) {res.status(500).json(err)}
+});
 
 router.get('/', withAuth, async (req, res) => {
     try {
@@ -116,5 +132,7 @@ router.delete('/search/:id', withAuth, async (req, res) => {
 
     } catch (err) { res.status(500).json(err) }
 });
+
+
 
 module.exports = router;
