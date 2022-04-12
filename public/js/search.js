@@ -13,9 +13,6 @@ const selectedCountry = document.getElementById('options');
 const selectedCity = document.getElementById('search')
 
 const inUseURL = location.origin;
-console.log(inUseURL);
-
-
 
 // Renders Country Names for dropdown menu
 async function renderAirportData() {
@@ -45,7 +42,6 @@ async function getIataCode(){
     console.log(selectedCity.value)
     try {
         const response= await fetch(inUseURL + `/api/search/iata/${selectedCountry.value}/${selectedCity.value}`);
-        console.log("YOU HGIT LINE 47!!!!!!!!!!!!!!!!!!")
         const iataCode = await response.json();
         console.log(iataCode)
     } catch (err) {
@@ -78,7 +74,6 @@ async function weatherSearch(){
     const lon = 104;
     var geocodeApiKey = 'a19e123a3b1cf7f00d08b299db07954c';
     var weatherApiUrl = 'https://api.openweathermap.org/data/2.5/onecall?' + 'lat=' + lat + '&lon=' + lon + '&units=imperial' + '&appid=' + geocodeApiKey;
-    console.log("YOU HGIT LINE 81!!!!!!!!!!!!!!!!!!")
     try {
         const response = await fetch(weatherApiUrl)
         console.log(response);
@@ -126,7 +121,6 @@ async function covidSearch(data){
     } catch(err){
         console.log(err);
     }
-    console.log("YOU HGIT LINE 129!!!!!!!!!!!!!!!!!!")
     fetch(queryCovidURL)
         .then(function (res)   {
             return res.json()
