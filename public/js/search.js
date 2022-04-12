@@ -166,7 +166,7 @@ async function travelInfo(){
         parseTravelData(travelData);
 
     } catch (err) {
-
+        console.log(err);
     }
 
 

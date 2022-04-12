@@ -12,7 +12,6 @@ router.get('/country', async (req, res) => {
 });
 
 router.get('/iata/:Country/:city', async (req, res) => {
-    console.log("YOU GOT ME COPPER")
     try {
         const iataData = await Airport.findAll({
             where: {
@@ -22,7 +21,6 @@ router.get('/iata/:Country/:city', async (req, res) => {
                 }
             }
         });
-        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! iata data: " + iataData);
         if (!iataData) {
             res.status(404).json({ message: 'No matching airports found' });
             return;
@@ -48,8 +46,6 @@ router.get('/', withAuth, async (req, res) => {
 
 router.post('/search', withAuth, async (req, res) => {
 
-    console.log("HIT ME BABY ONE MORE TIME!!!!")
-
     try {
         const newAirportData = await Airport.Create({
             ...req.body
@@ -67,8 +63,6 @@ router.post('/search', withAuth, async (req, res) => {
             ...req.body
         })
         const allNewData = [newAirportData && newCountryData && newCovidData && newSafetyData && newWeatherData]
-
-        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + allNewData);
 
         res.status(200).json(allNewData);
     } catch (err) { res.status(500).json(err) }
