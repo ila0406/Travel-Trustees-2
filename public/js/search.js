@@ -73,7 +73,6 @@ async function getIataCode(){
 }
 
 
-
 async function weatherSearch(){
     const lat = 39;
     const lon = 104;
@@ -169,9 +168,6 @@ renderAirportData();
 
 
  function searchSubmit(){
-
-     alert(selectedCountry.value);
-     alert(selectedCity.value);
      getIataCode();
         weatherSearch();
         console.log('Getting Covid Stats')

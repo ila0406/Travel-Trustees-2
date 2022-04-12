@@ -1,7 +1,7 @@
 {
-  "name": "crowd-funding",
+  "name": "travel-trustee",
   "version": "1.0.0",
-  "description": "",
+  "description": "The best travel app money can buy(even though its free).",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
