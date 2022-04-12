@@ -85,6 +85,10 @@ Previous searches are saved within the user's profile which is behind a login. S
 
 <img src="./assets/images/test.png" width="250">
 
+## Search
+
+<img src="./assets/images/search.png" width="250">
+
 ## Results
 
 <img src="./assets/images/results.png" width="500">
