@@ -19,7 +19,6 @@ async function renderAirportData() {
     try {
         const response = await fetch(inUseURL + '/api/search/country');
         const airportData = await response.json();
-        console.log(airportData);
 
         const dropDown = document.getElementById('options');
         let i = 0;
@@ -58,10 +57,24 @@ async function getIataCode(){
 
     airportsUrl = 'https://airlabs.co/api/v9/airports?iata_code=' + iataCode + '&api_key=' + airportApiKey
     try {
+    const cityEl = document.getElementById('airport');
+    const iataEl = document.getElementById('IATA');
+
+
+
     const response = await fetch(airportsUrl)
     console.log(response);
     const airportData = await response.json();
     const airportName  = airportData.response[0]['name'];
+
+    const iataText = iataCode;
+    const cityText = airportName;
+
+
+    cityEl.textContent = cityText;
+    iataEl.textContent = iataText;
+
+
     console.log("---Getting Airport---")
     console.log(airportName);
     return(airportName);
