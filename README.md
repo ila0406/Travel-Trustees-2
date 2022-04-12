@@ -2,7 +2,7 @@
 
 ## GitHub Repository & Deployed Application
 * https://github.com/ila0406/Travel-Trustees-2
-* https://immense-ravine-97579.herokuapp.com/
+* https://sheltered-savannah-27088.herokuapp.com/
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -17,7 +17,13 @@
 * [Screenshots](#screenshots) 
 
 ## <a id='description' href='#readme-badges'><img id='usage' src='https://i.imgur.com/LJ1S6wB.png' style='height: 40px'></a>
-This App was built with the intention of being a safety tool for your travel needs. It will pull relevent information for your destination to make your travel a safe and fun trip. If you search for any city in the countries we provided you will be met with a list that includes: * Airports near your destination * Covid cases * Local weather *Country Safety Rating for Travel Previous searches are saved within the user's profile which is behind a login. Safety information for users home location is also saved in profile so they have a comparision when planning their travels. 
+This App was built with the intention of being a safety tool for your travel needs. It will pull relevent information for your destination to make your travel a safe and fun trip. If you search for any city in the countries we provided you will be met with a list that includes: 
+* Airports near your destination 
+* Covid cases
+* Local weather 
+* Country Safety Rating for Travel 
+
+Previous searches are saved within the user's profile which is behind a login. Safety information for users home location is also saved in profile so they have a comparision when planning their travels. 
 
 ## <a id='technolgies-used' href='#readme-badges'><img id='usage' src='https://i.imgur.com/ykBU02c.png' style='height: 40px'></a>
 * Javascript 
@@ -78,6 +84,10 @@ This App was built with the intention of being a safety tool for your travel nee
 ## Test User
 
 <img src="./assets/images/test.png" width="250">
+
+## Search
+
+<img src="./assets/images/search.png" width="250">
 
 ## Results
 
