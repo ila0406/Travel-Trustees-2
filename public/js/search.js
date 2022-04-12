@@ -22,6 +22,8 @@ async function getCountryCode() {
         const countryCode = countryData[0]['alpha_2_code'];
 
         covidSearch(countryCode);
+        travelInfo(countryCode);
+        weatherSearch(countryCode);
     } catch (err) {
         console.log(err);
     }
@@ -77,7 +79,6 @@ async function getIataCode(){
 
 
     const response = await fetch(airportsUrl)
-    console.log(response);
     const airportData = await response.json();
     const airportName  = airportData.response[0]['name'];
 
@@ -89,8 +90,6 @@ async function getIataCode(){
     iataEl.textContent = iataText;
 
 
-    console.log("---Getting Airport---")
-    console.log(airportName);
     return(airportName);
         // return airportData;  
 
@@ -101,37 +100,49 @@ async function getIataCode(){
 
 
 async function weatherSearch(){
-    const lat = 39;
-    const lon = 104;
     var geocodeApiKey = 'a19e123a3b1cf7f00d08b299db07954c';
-    var weatherApiUrl = 'https://api.openweathermap.org/data/2.5/onecall?' + 'lat=' + lat + '&lon=' + lon + '&units=imperial' + '&appid=' + geocodeApiKey;
     try {
-        const response = await fetch(weatherApiUrl)
-        console.log(response);
-        const weatherData = await response.json();
-        forecast(weatherData);
+        geocodeApiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${selectedCity}&limit=1&appid=${geocodeApiKey}`
+        console.log(ApiUrl);
+        const response = await fetch(geocodeApiUrl)
+        const geocode = await response.json();
+
+
+        const lat = geocode[0]['lat'];
+        const lon = geocode[0]['lon'];
+        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        console.log(lat,lon)
+        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+
+    } catch (err) {}
+
+//     var weatherApiUrl = 'https://api.openweathermap.org/data/2.5/onecall?' + 'lat=' + lat + '&lon=' + lon + '&units=imperial' + '&appid=' + geocodeApiKey;
+//     try {
+//         const response = await fetch(weatherApiUrl)
+//         const weatherData = await response.json();
+//         forecast(weatherData);
 
 
 
 
-        // Get 5-day Weather forecast from data returned in Weather Search Function
-        function forecast(weatherData){
+//         // Get 5-day Weather forecast from data returned in Weather Search Function
+//         function forecast(weatherData){
 
-        for (i=0; i<5; i++){
-            var forecastWicon = weatherData['daily'][i]['weather'][0].icon;
-            var forecastIconUrl = 'https://openweathermap.org/img/wn/' + forecastWicon + '.png';
-            var forecastDay = weatherData['daily'][i].dt;
-            var forecastWind = weatherData['daily'][i].wind_speed;
-            var forecastTemp =  weatherData['daily'][i].temp.max;
-            var forecastHumidity = weatherData['daily'][i].humidity;
+//         for (i=0; i<5; i++){
+//             var forecastWicon = weatherData['daily'][i]['weather'][0].icon;
+//             var forecastIconUrl = 'https://openweathermap.org/img/wn/' + forecastWicon + '.png';
+//             var forecastDay = weatherData['daily'][i].dt;
+//             var forecastWind = weatherData['daily'][i].wind_speed;
+//             var forecastTemp =  weatherData['daily'][i].temp.max;
+//             var forecastHumidity = weatherData['daily'][i].humidity;
 
-            console.log(forecastTemp, forecastDay, forecastWind, forecastHumidity);
-    }
-}
+//             console.log(forecastTemp, forecastDay, forecastWind, forecastHumidity);
+//     }
+// }
 
-    } catch (err){
-        console.log(err);
-    }
+//     } catch (err){
+//         console.log(err);
+//     }
 
 }
 
@@ -160,37 +171,57 @@ async function covidSearch(countryCode){
         })
     function parseCovidData(covidData) {
         // Output Travel Advisory based on Country drop down
-            population = covidData[212]['population'];
-            casePerMillion = covidData[212]['casesPerOneMillion'];
-            todayCases = covidData[212]['todayCases'];
-            activeMillion = covidData[212]['activePerOneMillion'];
-            recovered = covidData[212]['recovered'];
+            const cpmEl = document.getElementById('cpm');
+            const todayCasesEl = document.getElementById('todayCases');
+            const apmEl = document.getElementById('apm');
+            const recoveredEl = document.getElementById('recovered')
 
-            console.log(`Population: ${population}, casePerMillion: ${casePerMillion},todayCases: ${todayCases},activeMillion: ${activeMillion},recovered: ${recovered}`)
+            casePerMillion = covidData['casesPerOneMillion'];
+            todayCases = covidData['todayCases'];
+            activeMillion = covidData['activePerOneMillion'];
+            recovered = covidData['recovered'];
+
+            cpmEl.textContent = `Cases Per Million People: ${casePerMillion}`;
+            todayCasesEl.textContent = `Todays Cases: ${todayCases}`;
+            apmEl.textContent = `Active cases Per Million People: ${activeMillion}`;
+            recoveredEl.textContent = `Total Recovered: ${recovered}`;
+
+
+
+            console.log(`casePerMillion: ${casePerMillion},todayCases: ${todayCases},activeMillion: ${activeMillion},recovered: ${recovered}`)
     }
 }
 
 
 
         // Get Travel Safety Advisory from Advisory API Endpoint
-async function travelInfo(){
-    var travelInfoURL = 'https://www.travel-advisory.info/api?countrycode=' + searchCountry;
+async function travelInfo(countryCode){
+    var travelInfoURL = 'https://www.travel-advisory.info/api?countrycode=' + countryCode;
     try {
+        const messageEl = document.getElementById('message');
+        const scoreEl = document.getElementById('score')
+
         const response = await fetch(travelInfoURL)
+        console.log(response);
         const travelData = await response.json();
         console.log(travelData);
-        parseTravelData(travelData);
+
+        travelInfo = travelData['data'][`${countryCode}`]['advisory'];
+        const score = travelInfo.score
+        const message = travelInfo.message
+
+        scoreEl.textContent = `Safety Rating: ${score}`;
+        messageEl.textContent = `Advisory: ${message}`;
+
+
+
 
     } catch (err) {
         console.log(err);
     }
 
 
-    function parseTravelData(travelData) {
-        // Output Travel Advisory based on Country drop down
-        travelInfo = travelData['data'].US.advisory.message;
-        console.log(travelInfo);
-    }
+
 }
 
 renderAirportData();
@@ -199,10 +230,9 @@ renderAirportData();
  function searchSubmit(){
      getIataCode();
      getCountryCode();
-        weatherSearch();
         console.log('Getting Covid Stats')
         console.log('Getting travel advisory')
-        travelInfo();
+
 
 }
 
