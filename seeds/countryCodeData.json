@@ -232,7 +232,7 @@
     { "country": "Uganda", "alpha_2_code": "UG", "alpha_3_code": "UGA", "id": 800},
     { "country": "Ukraine", "alpha_2_code": "UA", "alpha_3_code": "UKR", "id": 804},
     { "country": "United Arab Emirates (the)", "alpha_2_code": "AE", "alpha_3_code": "ARE", "id": 784},
-    { "country": "United Kingdom of Great Britain and Northern Ireland (the)", "alpha_2_code": "GB", "alpha_3_code": "GBR", "id": 826},
+    { "country": "United Kingdom", "alpha_2_code": "GB", "alpha_3_code": "GBR", "id": 826},
     { "country": "United States Minor Outlying Islands (the)", "alpha_2_code": "UM", "alpha_3_code": "UMI", "id": 581},
     { "country": "USA", "alpha_2_code": "US", "alpha_3_code": "USA", "id": 840},
     { "country": "Uruguay", "alpha_2_code": "UY", "alpha_3_code": "URY", "id": 858},
