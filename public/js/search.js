@@ -14,6 +14,20 @@ const selectedCity = document.getElementById('search')
 
 const inUseURL = location.origin;
 
+async function getCountryCode() {
+    try {
+        const response = await fetch(inUseURL + `/api/search/countryCode/${selectedCountry.value}`)
+        const countryData = await response.json();
+
+        const countryCode = countryData[0]['alpha_2_code'];
+
+        covidSearch(countryCode);
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
 // Renders Country Names for dropdown menu
 async function renderAirportData() {
     try {
@@ -124,9 +138,11 @@ async function weatherSearch(){
 
 
 //Get Covid stats from Covid API endpoint
-async function covidSearch(data){
-    searchCountry = 'US'
-    var queryCovidURL = 'https://disease.sh/v3/covid-19/countries?yesterday=&sort=?&limit=1&countrycode='  + searchCountry;
+async function covidSearch(countryCode){
+
+
+
+    var queryCovidURL = `https://disease.sh/v3/covid-19/countries/${countryCode}?yesterday=yesterday&strict=true`
 
     try {
         const response = await fetch(queryCovidURL)
@@ -182,9 +198,9 @@ renderAirportData();
 
  function searchSubmit(){
      getIataCode();
+     getCountryCode();
         weatherSearch();
         console.log('Getting Covid Stats')
-        covidSearch();
         console.log('Getting travel advisory')
         travelInfo();
 
