@@ -18,8 +18,7 @@ router.get('/iata/:Country/:city', async (req, res) => {
             where: {
                 Country: req.params.Country,
                 city: {
-                    // [Op.like]: '%' + req.params.city + '%'
-                    [Op.like]: req.params.city
+                    [Op.like]: '%' + req.params.city + '%'
                 }
             }
         });
