@@ -41,7 +41,7 @@ async function renderAirportData() {
 async function getIataCode(){
     console.log(selectedCity.value)
     try {
-        const response= await fetch(localUrl + `/api/search/iata/${selectedCountry.value}/${selectedCity.value}`);
+        const response= await fetch(inUseURL + `/api/search/iata/${selectedCountry.value}/${selectedCity.value}`);
         const iataCodeData = await response.json();
         console.log("---IATA CODE---")
         iataCode = iataCodeData[0]['IATA_code']
@@ -147,7 +147,6 @@ async function covidSearch(data){
         // Get Travel Safety Advisory from Advisory API Endpoint
 async function travelInfo(){
     var travelInfoURL = 'https://www.travel-advisory.info/api?countrycode=' + searchCountry;
-    console.log("YOU HGIT LINE 151!!!!!!!!!!!!!!!!!!")
     try {
         const response = await fetch(travelInfoURL)
         const travelData = await response.json();
