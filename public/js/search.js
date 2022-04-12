@@ -41,23 +41,28 @@ async function renderAirportData() {
 async function getIataCode(){
     console.log(selectedCity.value)
     try {
-        const response= await fetch(inUseURL + `/api/search/iata/${selectedCountry.value}/${selectedCity.value}`);
-        const iataCode = await response.json();
-        console.log(iataCode)
+        const response= await fetch(localUrl + `/api/search/iata/${selectedCountry.value}/${selectedCity.value}`);
+        const iataCodeData = await response.json();
+        console.log("---IATA CODE---")
+        iataCode = iataCodeData[0]['IATA_code']
+        console.log(iataCode);
+        airportSearch(iataCode);
+
     } catch (err) {
         console.log(err);
     }
 }
 
 // Get nearby Airports from API endpoint
-  async function airportSearch(){
-    iataCode = 'CDG'
+  async function airportSearch(iataCode){
+
     airportsUrl = 'https://airlabs.co/api/v9/airports?iata_code=' + iataCode + '&api_key=' + airportApiKey
     try {
     const response = await fetch(airportsUrl)
     console.log(response);
     const airportData = await response.json();
     const airportName  = airportData.response[0]['name'];
+    console.log("---Getting Airport---")
     console.log(airportName);
     return(airportName);
         // return airportData;  
@@ -165,16 +170,15 @@ renderAirportData();
 
 
  function searchSubmit(){
-    alert(selectedCountry.value);
-    alert(selectedCity.value);
-    getIataCode();
-    console.log('Getting airports');
-    airportSearch();
-    console.log('Getting weather');
-    weatherSearch();
-    console.log('Getting Covid Stats')
-    covidSearch();
-    console.log('Getting travel advisory')
-    travelInfo();
+
+     alert(selectedCountry.value);
+     alert(selectedCity.value);
+     getIataCode();
+        weatherSearch();
+        console.log('Getting Covid Stats')
+        covidSearch();
+        console.log('Getting travel advisory')
+        travelInfo();
+
 }
 
