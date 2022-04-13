@@ -23,7 +23,6 @@ async function getCountryCode() {
 
         covidSearch(countryCode);
         travelInfo(countryCode);
-        weatherSearch(countryCode);
     } catch (err) {
         console.log(err);
     }
@@ -100,50 +99,68 @@ async function getIataCode(){
 
 
 async function weatherSearch(){
-    var geocodeApiKey = 'a19e123a3b1cf7f00d08b299db07954c';
+
+
     try {
-        geocodeApiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${selectedCity}&limit=1&appid=${geocodeApiKey}`
-        console.log(ApiUrl);
-        const response = await fetch(geocodeApiUrl)
-        const geocode = await response.json();
+        console.log(selectedCity);
+        geocodeApiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${selectedCity.value}&limit=1&appid=a19e123a3b1cf7f00d08b299db07954c`
+        console.log(geocodeApiUrl);
+        const gresponse = await fetch(geocodeApiUrl)
+        const geocode = await gresponse.json();
+        console.log('GEOCODE')
+        console.log(geocode);
 
 
         const lat = geocode[0]['lat'];
         const lon = geocode[0]['lon'];
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-        console.log(lat,lon)
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
-    } catch (err) {}
+        var weatherApiUrl = 'https://api.openweathermap.org/data/2.5/onecall?' + 'lat=' + lat + '&lon=' + lon + '&units=imperial' + '&appid=a19e123a3b1cf7f00d08b299db07954c';
 
-//     var weatherApiUrl = 'https://api.openweathermap.org/data/2.5/onecall?' + 'lat=' + lat + '&lon=' + lon + '&units=imperial' + '&appid=' + geocodeApiKey;
-//     try {
-//         const response = await fetch(weatherApiUrl)
-//         const weatherData = await response.json();
-//         forecast(weatherData);
+
+        const response = await fetch(weatherApiUrl)
+        const weatherData = await response.json();
+        forecast(weatherData);
 
 
 
 
-//         // Get 5-day Weather forecast from data returned in Weather Search Function
-//         function forecast(weatherData){
+        // Get 5-day Weather forecast from data returned in Weather Search Function
+        function forecast(weatherData){
 
-//         for (i=0; i<5; i++){
-//             var forecastWicon = weatherData['daily'][i]['weather'][0].icon;
-//             var forecastIconUrl = 'https://openweathermap.org/img/wn/' + forecastWicon + '.png';
-//             var forecastDay = weatherData['daily'][i].dt;
-//             var forecastWind = weatherData['daily'][i].wind_speed;
-//             var forecastTemp =  weatherData['daily'][i].temp.max;
-//             var forecastHumidity = weatherData['daily'][i].humidity;
+        for (i=0; i<5; i++){
+            x = `${i}`;
+            let forecastDayEl = document.getElementById(`forecastDay${x}`);
+            let tempEl = document.getElementById(`temp${x}`);
+            let windEl = document.getElementById(`wind${x}`);
+            let hEl = document.getElementById(`h${x}`);
+            let forecastWiconEl = document.getElementById(`wicon${x}`);
 
-//             console.log(forecastTemp, forecastDay, forecastWind, forecastHumidity);
-//     }
-// }
+            let forecastWicon = weatherData['daily'][i]['weather'][0].icon;
+            let forecastIconUrl = 'https://openweathermap.org/img/wn/' + forecastWicon + '.png';
+            let forecastDay = weatherData['daily'][i].dt;
+            let forecastWind = weatherData['daily'][i].wind_speed;
+            let forecastTemp =  weatherData['daily'][i].temp.max;
+            let forecastHumidity = weatherData['daily'][i].humidity;
 
-//     } catch (err){
-//         console.log(err);
-//     }
+            forecastWiconEl.setAttribute('src', forecastIconUrl);
+            forecastWiconEl.setAttribute('alt', 'weather icon');
 
+            
+            
+            forecastDayEl.innerText = moment(forecastDay * 1000).format('MM/DD/YYYY');
+            tempEl.textContent = `Temp: ${forecastTemp}`;
+             windEl.textContent = `Wind: ${forecastWind}`;
+            hEl.textContent = `Humidity: ${forecastHumidity}%`;
+
+
+
+            console.log(forecastTemp, forecastDay, forecastWind, forecastHumidity);
+    }
+}
+
+    } catch (err){
+        console.log(err);
+    }
 }
 
 
@@ -230,6 +247,7 @@ renderAirportData();
  function searchSubmit(){
      getIataCode();
      getCountryCode();
+     weatherSearch();
         console.log('Getting Covid Stats')
         console.log('Getting travel advisory')
 
