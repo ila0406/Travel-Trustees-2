@@ -1,73 +1,63 @@
-/* Mini code 14-28 */
-header, .project:not(:last-child) {
+header,
+.project:not(:last-child) {
   border-bottom: 1px solid #ccc;
 }
 
-/* Project1 */
 body {
-    background-color: black;
-    /* color: black; */
-    color: white;
+  background-color: black;
+  /* color: black; */
+  color: white;
 }
 
-/* Project1 */
 header {
-    padding: 30px;
-    clear: both;
-    text-align: center;
-    background-color: black;
-    color: white;
+  padding: 30px;
+  clear: both;
+  text-align: center;
+  background-color: black;
+  color: white;
 }
 
-/* Project1 */
 #hero-image {
-    height: 200px;
-    width: 100%;
-    margin-bottom: 25px;
-    background-image: url("/assets/img/background.jpg");
-    background-size: cover;
-    background-position: center;
-} 
-
-/* Project1 */
-form    {
-    text-align: center;
+  height: 200px;
+  width: 100%;
+  margin-bottom: 25px;
+  background-image: url("/assets/img/background.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
-/* Project1 */
+form {
+  text-align: center;
+}
+
 .hide {
-    display: none;
-  }
+  display: none;
+}
 
-/* Project1 */
 #search-history {
-    text-align: center;
-    width: 100%;
-    display: block;
-    text-align: center;
+  text-align: center;
+  width: 100%;
+  display: block;
+  text-align: center;
 }
 
-/* Project1 */
 footer {
-    padding: 30px;
-    clear: both;
-    text-align: center;
-    background-color: black;
-    color: white;
+  padding: 30px;
+  clear: both;
+  text-align: center;
+  background-color: black;
+  color: white;
 }
 
-/* Project1 */
-.forecastCard{
-    display: inline-block;
-    margin: 4%;
+.forecastCard {
+  display: inline-block;
+  margin: 4%;
 }
 
-/* New */
-h2  {
-    color: white;
+h2 {
+  color: white;
 }
 
-/* Mini code 14-28 */
 .no-button {
   background: none;
   border: none;
@@ -78,24 +68,21 @@ h2  {
   font-size: 100%;
 }
 
-/* Mini code 14-28 */
 .no-button:hover {
   color: #065b83;
   text-decoration: underline;
 }
 
-/* Mini code 14-28 */
-.dollar-amount {
-  color: #056605;
-  font-weight: bold;
-  margin-left: -5px;
-}
-
-#options{
+#options {
   color: black;
 }
 
-.profile-headers    {
-    color: black;
-    font-weight: bold
+.profile-headers {
+  color: black;
+  font-weight: bold
+}
+
+.welcome {
+  font-weight: bold;
+  font-size: large;
 }
