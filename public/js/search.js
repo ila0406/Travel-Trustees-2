@@ -3,7 +3,7 @@ const resultsContainerEl = document.getElementById('results-container');
 console.log(resultsContainerEl);
 // resultsContainerEl.setAttribute('class', 'hide');
 
-document.getElementById("search-submit").addEventListener("click", function(event){
+document.getElementById('search-submit').addEventListener('click', function(event){
     event.preventDefault();
     resultsContainerEl.removeAttribute('class');
     searchSubmit();
@@ -56,7 +56,7 @@ async function getIataCode(){
     try {
         const response= await fetch(inUseURL + `/api/search/iata/${selectedCountry.value}/${selectedCity.value}`);
         const iataCodeData = await response.json();
-        console.log("---IATA CODE---")
+        console.log('---IATA CODE---')
         iataCode = iataCodeData[0]['IATA_code']
         console.log(iataCode);
         airportSearch(iataCode);

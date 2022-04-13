@@ -1,16 +1,16 @@
 
 <!-- Loop over each object in the reviews array -->
 {{#each reviews as |review| }}
-<div class="row mb-4 review">
-  <div class="col-md-5">
+<div class='row mb-4 review'>
+  <div class='col-md-5'>
     <h2>
       <!-- Call helper function with triple brackets to render the emoji span as HTML -->
       {{{get_emoji}}}
-      <a href="/reviews/{{review.id}}">{{review.name}}</a>
+      <a href='/reviews/{{review.id}}'>{{review.name}}</a>
     </h2>
     <p>Created by {{review.user.name}} on {{format_date review.date_created}}</p>
   </div>
-  <div class="col-md-7">
+  <div class='col-md-7'>
     <p>
       {{review.description}}
     </p>
@@ -20,4 +20,4 @@
 
 
 
-<script src="./js/homepage.js"></script>
+<script src='./js/homepage.js'></script>

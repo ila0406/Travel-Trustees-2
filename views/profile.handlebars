@@ -1,25 +1,25 @@
-<div class="row">
-    <div class="col-auto">
-        <h2>Welcome, {{name}}!</h2>
+<div class='row'>
+    <div class='col-auto'>
+        <h1 class='welcome'>Welcome, {{name}}!</h2>
     </div>
 </div>
 
-<div class="row mt-4">
-    <div class="col-md-6">
+<div class='row mt-4'>
+    <div class='col-md-6'>
         {{> homeLocation}}
     </div>
 
     {{#if reviews.length}}
-    <div class="col-md-6 project-list">
+    <div class='col-md-6 project-list'>
         <h3>Personal Reviews:</h3>
 
         {{#each reviews as |review|}}
-        <div class="row mb-2">
-            <div class="col-md-8">
-                <h4><a href="/reviews/{{review.id}}">{{review.name}}</a></h4>
+        <div class='row mb-2'>
+            <div class='col-md-8'>
+                <h4><a href='/reviews/{{review.id}}'>{{review.name}}</a></h4>
             </div>
-            <div class="col-md-4">
-                <button class="btn btn-sm btn-danger" data-id="{{review.id}}">DELETE</button>
+            <div class='col-md-4'>
+                <button class='btn btn-sm btn-danger' data-id='{{review.id}}'>DELETE</button>
             </div>
         </div>
         {{/each}}
@@ -27,4 +27,4 @@
     {{/if}}
 </div>
 
-<script src="./js/profile.js"></script>
+<script src='./js/profile.js'></script>

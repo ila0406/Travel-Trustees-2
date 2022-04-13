@@ -12,11 +12,11 @@ module.exports = {
 
     // Return a random emoji
     if (randomNum > 0.7) {
-      return `<span for="img" aria-label="airplane">✈️</span>`;
+      return `<span for='img' aria-label='airplane'>✈️</span>`;
     } else if (randomNum > 0.4) {
-      return `<span for="img" aria-label="globe">🌐</span>`;
+      return `<span for='img' aria-label='globe'>🌐</span>`;
     } else {
-      return `<span for="img" aria-label="boat">🛥️</span>`;
+      return `<span for='img' aria-label='boat'>🛥️</span>`;
     }
   },
 };
