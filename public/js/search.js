@@ -1,4 +1,3 @@
-// Variables
 const airportApiKey = 'be36ed8a-9e45-4afb-b635-3bfc8ea68255';
 const resultsContainerEl = document.getElementById('results-container');
 console.log(resultsContainerEl);
@@ -103,7 +102,7 @@ async function weatherSearch(){
 
     try {
         console.log(selectedCity);
-        geocodeApiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${selectedCity.value}&limit=1&appid=a19e123a3b1cf7f00d08b299db07954c`
+        geocodeApiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${selectedCity.value}&limit=1&appid=a19e123a3b1cf7f00d08b299db07954c`
         console.log(geocodeApiUrl);
         const gresponse = await fetch(geocodeApiUrl)
         const geocode = await gresponse.json();
