@@ -85,6 +85,10 @@ Previous searches are saved within the user's profile which is behind a login. S
 
 <img src="./assets/images/test.png" width="250">
 
+## Profile
+
+<img src="./assets/images/profile.png" width="300">
+
 ## Search
 
 <img src="./assets/images/search.png" width="250">
@@ -92,6 +96,10 @@ Previous searches are saved within the user's profile which is behind a login. S
 ## Results
 
 <img src="./assets/images/results.png" width="500">
+
+## Responsive
+
+<img src="./assets/images/responsive.png" width="300">
 
 
 
@@ -103,4 +111,4 @@ Or you can us an email directly <br>
 Email: 
 * Delilah <ila0406@gmail.com>
 * David <david.faidley23@gmail.com>
-* Josh<joshtibbetts12@gmail.com>
+* Josh <joshtibbetts12@gmail.com>
