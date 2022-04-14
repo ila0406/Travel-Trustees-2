@@ -2,7 +2,7 @@
 
 ## GitHub Repository & Deployed Application
 * https://github.com/ila0406/Travel-Trustees-2
-* https://sheltered-savannah-27088.herokuapp.com/
+* https://immense-ravine-97579.herokuapp.com/
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
