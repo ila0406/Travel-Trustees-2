@@ -5,6 +5,7 @@ const newFormHandler = async (event) => {
   const needed_funding = document.querySelector('#project-funding').value.trim();
   const description = document.querySelector('#project-desc').value.trim();
 
+  // Display Reviews
   if (name && needed_funding && description) {
     const response = await fetch(`/api/reviews`, {
       method: 'POST',
@@ -22,6 +23,7 @@ const newFormHandler = async (event) => {
   }
 };
 
+// Allow reviews to be deleted
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
@@ -39,9 +41,7 @@ const delButtonHandler = async (event) => {
 };
 
 document
-  .querySelector('.new-project-form')
-  .addEventListener('submit', newFormHandler);
+  .querySelector('.new-project-form').addEventListener('submit', newFormHandler);
 
 document
-  .querySelector('.project-list')
-  .addEventListener('click', delButtonHandler);
+  .querySelector('.project-list').addEventListener('click', delButtonHandler);

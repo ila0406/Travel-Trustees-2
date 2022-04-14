@@ -1,3 +1,4 @@
+// Allow user to logout of website
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
@@ -22,6 +23,7 @@ const loginFormHandler = async (event) => {
   }
 };
 
+// Collect values from the sign up form
 const signupFormHandler = async (event) => {
   event.preventDefault();
 

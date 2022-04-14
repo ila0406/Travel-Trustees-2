@@ -6,6 +6,8 @@
         <span class='relative text-white'>Covid Stats</span></span>
         ....
     </blockquote>
+    
+    {{!-- Results container for covid stats --}}
         <div id='covid-content' class='box-content py-5 border-4'>
             <div class ='ml-8'>
                 <p id='cpm'>Cases Per Million People: </p>
@@ -17,35 +19,3 @@
     </div>
 
 <script src='../../public/js/search.js'></script>
-
-{{!-- 
-function travelInfo(data){
-    travelInfoEl.textContent= ''; // Clear previous advisory
-    var travelInfoURL = 'https://www.travel-advisory.info/api?countrycode=' + searchCountry;
-    var travelInfo = '';
-    travelCard.textContent = ''; // Clear previous travel card
-
-    fetch(travelInfoURL)
-        .then(function (res)   {
-            return res.json()
-        })
-    .then(function (data) {
-        // Output Travel Advisory based on Country drop down
-        if (searchCountry == 'US'){
-            travelInfo = data['data'].US.advisory.message;
-            var travelEl = document.createElement('p');
-            $(travelEl).text(`Country Safety Rating: ${travelInfo}`);
-            travelCard.append(travelEl);
-            travelInfoEl.append(travelCard);
-        }
-    });
-}
-
-// Clear Search History from Local Storage
-function clearHistory() {
-    window.localStorage.clear();
-    window.location.reload();
-}
-
-document.getElementById('clear').onclick = clearHistory; 
---}}
